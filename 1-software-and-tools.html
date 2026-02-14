@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Software and tools | Grimshire Mod Guide</title>
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body>
+  <div class="layout">
+    <aside class="sidebar" data-include="sidebar"></aside>
+
+    <main class="main">
+      <div class="content-shell">
+        <div data-include="topbar"></div>
+
+        <article class="content">
+          <h1>Software and tools</h1>
+          <p class="lead">
+            This section covers the software and tools required for Grimshire mod development.
+          </p>
+
+          <div class="card">
+            <strong>Goal of this step</strong>
+            <ul>
+              <li>Install the minimum required software for Grimshire modding</li>
+            </ul>
+          </div>
+
+          <section class="tool-section essential-section">
+            <h2>Essential</h2>
+            <ul class="tool-list">
+              <li>
+                <div class="tool-main">
+                  <strong>Grimshire</strong>
+                  <p>The latest stable game version.</p>
+                </div>
+                <div class="tool-action">
+                  <a class="tool-link tool-link-secondary" href="https://grimshire.wiki.gg/" target="_blank" rel="noopener noreferrer">Wiki</a>
+                </div>
+              </li>
+
+              <li>
+                <div class="tool-main">
+                  <strong>BepInEx</strong>
+                  <p>
+                    This acts as the foundation layer that loads and manages mods for Unity games.
+                    It handles the low-level plumbing required to inject your code into the game at runtime.
+                    Installing it also provides Harmony, which enables safe method patching and behavioral changes without modifying the original game files.
+                  </p>
+                </div>
+                <div class="tool-action">
+                  <a class="tool-link" href="https://github.com/BepInEx/BepInEx/releases" target="_blank" rel="noopener noreferrer">Download</a>
+                </div>
+              </li>
+
+              <li>
+                <div class="tool-main">
+                  <strong>Visual Studio</strong>
+                  <p>
+                    This is the primary workspace where you’ll write and build your mod.
+                    For this guide, you’ll need Visual Studio Community Edition (or an equivalent full IDE).
+                    Lightweight editors like Visual Studio Code won’t be sufficient for the workflow used here.
+                  </p>
+                </div>
+                <div class="tool-action">
+                  <a class="tool-link" href="https://visualstudio.microsoft.com/vs/community/" target="_blank" rel="noopener noreferrer">Download</a>
+                </div>
+              </li>
+
+              <li>
+                <div class="tool-main">
+                  <strong>dnSpy</strong>
+                  <p>
+                    This tool lets you inspect the game’s compiled code directly.
+                    It’s invaluable for understanding how the game works internally and for identifying the classes, methods, and fields your mod will interact with.
+                  </p>
+                </div>
+                <div class="tool-action">
+                  <a class="tool-link" href="https://github.com/dnSpyEx/dnSpy/releases" target="_blank" rel="noopener noreferrer">Download</a>
+                </div>
+              </li>
+            </ul>
+          </section>
+
+          <section class="tool-section recommended-section">
+            <h2>Recommended</h2>
+            <ul class="tool-list">
+              <li>
+                <div class="tool-main">
+                  <strong>AssetStudio</strong>
+                  <p>
+                    Used to browse and extract assets from Unity games, such as textures, models, audio, and animation data.
+                    It’s especially useful when you need to understand how existing assets are structured or when creating new assets that need to match the game’s style and formats.
+                  </p>
+                </div>
+                <div class="tool-action">
+                  <a class="tool-link" href="https://github.com/Perfare/AssetStudio/releases" target="_blank" rel="noopener noreferrer">Download</a>
+                </div>
+              </li>
+
+              <li>
+                <div class="tool-main">
+                  <strong>UnityExplorer</strong>
+                  <p>
+                    A BepInEx plugin that gives you real-time access to Unity scenes, objects, components, and values while the game is running.
+                    It’s invaluable for experimentation, debugging, and learning how systems behave without constantly rebuilding and relaunching your mod.
+                  </p>
+                </div>
+                <div class="tool-action">
+                  <a class="tool-link" href="https://github.com/sinai-dev/UnityExplorer/releases" target="_blank" rel="noopener noreferrer">Download</a>
+                </div>
+              </li>
+            </ul>
+          </section>
+
+          <div class="callout">
+            Next, follow the installation steps on the Installation and set-up page.
+          </div>
+
+          <div class="page-nav">
+            <a class="button" href="0-index.html">Back to Overview</a>
+            <a class="button" href="2-install-and-setup.html">Next</a>
+          </div>
+        </article>
+      </div>
+    </main>
+  </div>
+
+  <script src="assets/js/app.js"></script>
+</body>
+</html>

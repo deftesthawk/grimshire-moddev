@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Grimshire Mod Development Guide</title>
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body>
+  <div class="layout">
+    <aside class="sidebar" data-include="sidebar"></aside>
+
+    <main class="main">
+      <div class="content-shell">
+        <div data-include="topbar"></div>
+        <article class="content">
+          <h1>Grimshire Mod Development Guide</h1>
+          <div class="callout">
+            This guide is still being developed. Additional steps may be added, and existing sections may be revised.
+          </div>
+          <p class="lead">
+            This guide walks you through the complete Grimshire mod workflow: setting up tools, creating a project, configuring builds, adding references, and shipping a working mod.
+          </p>
+
+          <div class="card">
+            <strong>Who this guide is for</strong>
+            <ul>
+              <li>Beginners creating their first Grimshire mod</li>
+              <li>Modders who want a concise refresher on tooling, setup, and project structure</li>
+              <li>Anyone who wants a straightforward, step-by-step workflow</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <strong>What you will build</strong>
+            <ul>
+              <li>A C# mod project targeting the correct .NET Framework</li>
+              <li>A working plugin that loads through BepInEx</li>
+              <li>A structured workflow for testing, debugging, and release packaging</li>
+            </ul>
+          </div>
+
+          <h2>Guide path</h2>
+          <ul>
+            <li><strong>Step 1:</strong> Software and tools</li>
+            <li><strong>Step 2:</strong> Installation and set-up</li>
+            <li><strong>Step 3:</strong> Create a Visual Studio project</li>
+            <li><strong>Step 4:</strong> Configure assembly and build settings</li>
+            <li><strong>Step 5:</strong> Add required references</li>
+          </ul>
+
+          <div class="callout">
+            If you are new to modding, follow the steps in order. Each step builds on the previous one.
+          </div>
+
+          <div class="page-nav">
+            <a class="button" href="1-software-and-tools.html">Start</a>
+          </div>
+        </article>
+      </div>
+    </main>
+  </div>
+
+  <script src="assets/js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Adding references | Grimshire Mod Guide</title>
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body>
+  <div class="layout">
+    <aside class="sidebar" data-include="sidebar"></aside>
+
+    <main class="main">
+      <div class="content-shell">
+        <div data-include="topbar"></div>
+
+        <article class="content">
+          <h1>Adding references</h1>
+          <p class="lead">
+            In this step, you will add the required game, Unity, and framework DLLs to your project as references.<br>
+
+          <h2>Why references matter</h2>
+            References are links to external assemblies that make their classes and methods available in your code.
+            A useful way to think about it: your project is a workshop, and references are the tools you bring into it, you can only use what is actually on the bench.
+            If a required reference is missing, Visual Studio will report unresolved types and the project will fail to build.
+          </p>
+
+          <h2>Add references in Visual Studio</h2>
+          <p>
+            In Solution Explorer, under your project, right click <strong>References</strong>, then select <strong>Add Reference</strong>.
+          </p>
+
+          <figure class="doc-figure">
+            <img class="doc-image" src="assets/img/addreferences.png" alt="Add references to your project" />
+          </figure>
+          <p>
+            The Reference Manager will open. Select <strong>Browse</strong>.
+          </p>
+          <figure class="doc-figure">
+            <img class="doc-image" src="assets/img/browsereferences.png" alt="Browse for references" />
+          </figure>
+          <p>
+            Then add the files below, located in your Grimshire install path.
+          </p>
+
+          <h2>Core references</h2>
+          <table class="ref-table">
+            <thead>
+              <tr>
+                <th>Filename</th>
+                <th>Location</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>Assembly-CSharp.dll</code></td>
+                <td><code>Grimshire\Grimshire_Data\Managed</code></td>
+              </tr>
+              <tr>
+                <td><code>UnityEngine.dll</code></td>
+                <td><code>Grimshire\Grimshire_Data\Managed</code></td>
+              </tr>
+              <tr>
+                <td><code>UnityEngine.CoreModule.dll</code></td>
+                <td><code>Grimshire\Grimshire_Data\Managed</code></td>
+              </tr>
+              <tr>
+                <td><code>UnityEngine.UI.dll</code></td>
+                <td><code>Grimshire\Grimshire_Data\Managed</code></td>
+              </tr>
+              <tr>
+                <td><code>BepInEx.dll</code></td>
+                <td><code>Grimshire\BepInEx\core</code></td>
+              </tr>
+              <tr>
+                <td><code>0Harmony.dll</code></td>
+                <td><code>Grimshire\BepInEx\core</code></td>
+              </tr>
+            </tbody>
+          </table>
+
+          <p>
+            After adding the core references, your References list should look similar to the example below.
+            Only the entries with a checkmark are actively referenced by this project.
+            This view may also show additional assemblies that have been used recently, making them easier to add when needed.
+          </p>
+
+          <figure class="doc-figure">
+            <img class="doc-image" src="assets/img/referencesenabled.png" alt="References enabled" />
+          </figure>
+
+          <h2>Optional framework or library references</h2>
+          <p>
+            Add references for any extra frameworks you actually use.
+            For example, if your mod depends on another plugin or shared library, add that DLL as a reference too.
+          </p>
+
+          <h2>Dependency attribute example</h2>
+          <p>
+            If your mod depends on another plugin at runtime, declare it in your plugin class:
+          </p>
+
+          <pre><code>[BepInPlugin(GUID, MODNAME, VERSION)]
+[BepInDependency("com.example.dependency")]
+public class MyPlugin : BaseUnityPlugin
+{
+    // ...
+}</code></pre>
+
+          <h2>Practical note</h2>
+          <p>
+            You will not need every reference for every mod.
+            Start with the core set, then add any additional references your project requires.
+            As your mod evolves, your reference list will likely change.
+          </p>
+
+          <div class="page-nav">
+            <a class="button" href="4-configuring-assembly.html">Previous</a>
+            <a class="button" href="0-index.html">Back to Overview</a>
+          </div>
+        </article>
+      </div>
+    </main>
+  </div>
+
+  <script src="assets/js/app.js"></script>
+</body>
+</html>
