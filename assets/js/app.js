@@ -1,7 +1,7 @@
 // assets/js/app.js
 (() => {
   const pages = [
-    { href: "0-index.html", label: "Overview", key: "index" },
+    { href: "index.html", label: "Overview", key: "index" },
     { href: "1-software-and-tools.html", label: "1. Software and tools", key: "software-and-tools" },
     { href: "2-install-and-setup.html", label: "2. Installation and set-up", key: "software-and-tools" },
     { href: "3-creating-a-project.html", label: "3. Creating a project", key: "creating-a-project" },
@@ -64,7 +64,7 @@
           <span class="topbar-kicker">Documentation</span>
           <h2 class="topbar-title">${escapeHtml(pageLabel)}</h2>
         </div>
-        <a class="topbar-link" href="0-index.html">Home</a>
+        <a class="topbar-link" href="index.html">Home</a>
       </header>
     `;
   };
