@@ -8,6 +8,8 @@
     { href: `${BASE_PATH}creating-a-project/`, label: "3. Creating a project", key: "creating-a-project" },
     { href: `${BASE_PATH}configuring-assembly/`, label: "4. Configuring the assembly", key: "configuring-assembly" },
     { href: `${BASE_PATH}adding-references/`, label: "5. Adding references", key: "adding-references" },
+    { href: `${BASE_PATH}exploring-game-files/`, label: "6. Exploring the game files", key: "exploring-game-files" },
+
   ];
 
   const normalizePath = (p) => {

@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Exploring the game files | Grimshire Mod Guide</title>
+  <script src="/grimshire-moddev/assets/js/bootstrap.js"></script>
+</head>
+<body>
+  <div class="layout">
+    <aside class="sidebar" data-include="sidebar"></aside>
+
+    <main class="main">
+      <div class="content-shell">
+        <div data-include="topbar"></div>
+
+        <article class="content">
+          <h1>Exploring the game files</h1>
+          <p class="lead">
+            This step teaches you how to search the game code in dnSpy so you can quickly find the classes and methods relevant to your mod.
+          </p>
+
+          <div class="card">
+            <strong>Goal of this step</strong>
+            <ul>
+              <li>Understand the dnSpy interface and how to navigate it</li>
+              <li>Learn practical strategies for searching Unity game code</li>
+              <li>Identify relevant classes for building our movement mod</li>
+            </ul>
+          </div>
+
+          <h2>Understanding the dnspy interface</h2>
+          <p>
+            Before beginning, take a moment to get familiar with the three main areas you will use most:
+          </p>
+          <ul>
+            <li><strong>Assembly Explorer (left):</strong> Browse classes, methods, and fields.</li>
+            <li><strong>Code view (top right):</strong> Read the code for the selected item.</li>
+            <li><strong>Search panel (bottom right):</strong> Find classes, methods, or text quickly.</li>
+          </ul>
+
+          <h2>Open the game assembly</h2>
+          <ol>
+            <li>Launch dnSpy</li>
+            <li>Select <strong>File &gt; Open</strong></li>
+            <li>Open <code>&lt;Grimshire install&gt;\Grimshire_Data\Managed\Assembly-CSharp.dll</code></li>
+          </ol>
+
+          <h3>Expand the code tree</h3>
+          <p>
+            Once you open <code>Assembly-CSharp.dll</code>, dnSpy will populate the <strong>Assembly Explorer</strong> panel on the left.
+            Expand <code>Assembly-CSharp</code>, then expand <code>Assembly-CSharp.dll</code>.
+            You will see several top-level nodes. The one you will use is <code>{ } -</code>.
+            Expanding this will reveal the decompiled namespaces, classes, methods, and fields you can inspect and patch.
+          </p>
+
+          <figure class="doc-figure">
+            <img class="doc-image" src="/grimshire-moddev/assets/img/dnspyassemblyexplorer.png" alt="Explore Assembly-CSharp.dll" />
+          </figure>
+
+          <p>
+            At first glance, this list can feel overwhelming. Scanning through it can help you spot classes or systems that might interest you,
+            but when you need to find something specific, use dnSpy’s search features instead of scrolling through everything manually.
+          </p>
+
+          <h3>How to search efficiently in dnSpy</h3>
+          <p>
+            The <strong>Search</strong> box is your main navigation tool. Start broad, then narrow as you learn how the game names classes and methods.
+          </p>
+
+          <ul>
+            <li>
+              Begin with clear gameplay keywords related to your mod idea, such as <code>player</code>, <code>movement</code>, <code>process</code>, <code>manager</code>, or <code>controller</code>.
+            </li>
+            <li>
+              Use the two dropdowns to the right of the search box to narrow results.
+              A useful default is changing the second dropdown from <strong>All files</strong> to <strong>Selected files</strong> so results are limited to <code>Assembly-CSharp</code>.
+            </li>
+            <li>
+              For the first dropdown, start with <code>Class</code> or <code>Non-Generic Type</code>.
+              If that does not find what you need, switch to <code>Method</code>.
+              Use <code>Number/String</code> when searching for exact text, IDs, constants, or hardcoded values.
+            </li>
+            <li>
+              If a search returns nothing useful, change the filter or try a different keyword, then search again.
+            </li>
+            <li>
+              After opening a class, you can use <code>Ctrl + F</code> to quickly find specific text in the current code view.
+            </li>
+            <li>
+              Keeping notes on important classes and what they do can make exploration much easier.
+            </li>
+          </ul>
+
+          <figure class="doc-figure">
+            <img class="doc-image" src="/grimshire-moddev/assets/img/dnspysearch.png" alt="Search for Class" />
+          </figure>
+
+          <h2>Advanced searching with Analyze</h2>
+          <p>
+            Some values and methods are harder to track because they are used across many classes.
+            When basic search is not enough, use dnSpy's <strong>Analyze</strong> feature to trace how code is connected.
+          </p>
+
+          <ul>
+            <li>
+              In Assembly Explorer or Code view, right click a class, method, or field and select <strong>Analyze</strong>.
+            </li>
+            <li>
+              dnSpy will open an analysis panel showing relationships such as where that member is used, referenced, or called.
+            </li>
+            <li>
+              This is especially useful when you find a variable but need to know which method actually changes or uses it during gameplay.
+            </li>
+          </ul>
+
+          <p>
+            A practical workflow is:
+            identify a useful field or method -> right click <code>Analyze</code> -> open the usage results -> inspect the most relevant methods.
+          </p>
+
+          <figure class="doc-figure">
+            <img class="doc-image" src="/grimshire-moddev/assets/img/dnspyanalyze.png" alt="Analyze Class" />
+          </figure>
+
+          <div class="callout">
+            If search finds something related to what you need but not the logic itself, use <code>Analyze</code> to trace where it is actually used and identify where to patch.
+          </div>
+
+          <h2>Apply this workflow to our example</h2>
+          <p>
+            We will now use some of these methods to locate the exact game code we need for our first mod which will: <br>
+            Disable sprinting and change the player's walk speed.
+          </p>
+
+          <ol>
+            <li>
+              In the Search panel, search for <code>PlayerMovement</code> using <strong>Class</strong> or <strong>Non-Generic Type</strong>.
+            </li>
+            <li>
+              Open <code>PlayerMovement</code> and first scan the code manually to gather context.
+              You should spot <code>ToggleRunning()</code> and speed-related fields such as <code>maxSpeed</code> and <code>maxWalkSpeed</code>.
+            </li>
+            <li>
+              To investigate further, use <code>Ctrl + F</code> and search for <code>speed</code>.
+              You will see that <code>maxWalkSpeed</code> is used when switching from sprint back to walking in <code>ToggleRunning()</code>,
+              while <code>maxSpeed</code> is used by <code>HandleMovement()</code> for actual movement.
+              With that context, refine your search to <code>maxSpeed</code> to trace the key movement path.
+            </li>
+            <li>
+              This tells us that for this mod, <code>maxSpeed</code> is the key value to set, and <code>ToggleRunning()</code> is the key method to block.
+            </li>
+            <li>
+              From this quick review, we now know:
+              <ul>
+                <li><code>ToggleRunning()</code> controls sprint toggling and updates speed-related values</li>
+                <li><code>HandleMovement()</code> uses <code>maxSpeed</code> for actual movement</li>
+                <li><code>Start()</code> is a clean place to apply one-time setup changes</li>
+              </ul>
+            </li>
+          </ol>
+
+          <h2>Quick sanity check</h2>
+          <ul>
+            <li>✅ You have opened <code>Assembly-CSharp.dll</code> in dnSpy</li>
+            <li>✅ You found <code>PlayerMovement</code></li>
+            <li>✅ You identified <code>ToggleRunning()</code> and <code>Start()</code> as patch targets</li>
+            <li>✅ You can explain why those targets are safer than patching all of movement logic</li>
+          </ul>
+
+          <div class="page-nav">
+            <a class="button" href="/grimshire-moddev/adding-references/">Previous</a>
+            <a class="button" href="/grimshire-moddev/">Back to Overview</a>
+          </div>
+        </article>
+      </div>
+    </main>
+  </div>
+</body>
+</html>

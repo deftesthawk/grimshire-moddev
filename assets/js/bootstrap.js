@@ -1,6 +1,6 @@
 (() => {
   const BASE = "/grimshire-moddev";
-  const VERSION = "1";
+  const VERSION = "2";
 
   const css = document.createElement("link");
   css.rel = "stylesheet";
